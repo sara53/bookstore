@@ -1,18 +1,20 @@
 import "./App.css";
 import AddNewBook from "./components/AddNewBook";
-import BookList from "./components/BookList";
-import BookDetails from "./components/BookDetails";
+import BookContainer from "./components/BookContainer";
+import { getBooks } from "./store/slices/bookSlice";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getBooks());
+  }, []);
   return (
     <>
       <AddNewBook />
-      <div className="container">
-        <div className="row g-4">
-          <BookList />
-          <BookDetails />
-        </div>
-      </div>
+      <BookContainer />
     </>
   );
 }
